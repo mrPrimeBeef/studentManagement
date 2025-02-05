@@ -75,11 +75,11 @@ public class HibernateConfig {
     private static Properties setBaseProperties(Properties props) {
         props.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
         props.put("hibernate.connection.driver_class", "org.postgresql.Driver");
-        props.put("hibernate.hbm2ddl.auto", "update");
+        props.put("hibernate.hbm2ddl.auto", "create");
         props.put("hibernate.current_session_context_class", "thread");
-        props.put("hibernate.show_sql", "true");
-        props.put("hibernate.format_sql", "true");
-        props.put("hibernate.use_sql_comments", "true");
+        props.put("hibernate.show_sql", "false");
+        props.put("hibernate.format_sql", "false");
+        props.put("hibernate.use_sql_comments", "false");
         return props;
     }
 
@@ -93,9 +93,11 @@ public class HibernateConfig {
 
     private static Properties setDevProperties(Properties props) {
         String DBName = Utils.getPropertyValue("DB_NAME", "config.properties");
+        String DB_USERNAME = Utils.getPropertyValue("DB_USERNAME", "config.properties");
+        String DB_PASSWORD = Utils.getPropertyValue("DB_PASSWORD", "config.properties");
         props.put("hibernate.connection.url", "jdbc:postgresql://localhost:5432/" + DBName);
-        props.put("hibernate.connection.username", "postgres");
-        props.put("hibernate.connection.password", "postgres");
+        props.put("hibernate.connection.username", DB_USERNAME);
+        props.put("hibernate.connection.password", DB_PASSWORD);
         return props;
     }
 
