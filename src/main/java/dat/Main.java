@@ -1,29 +1,34 @@
 package dat;
 
+import dat.DAO.CourseDao;
 import dat.DAO.PersonDao;
 import dat.config.HibernateConfig;
+import dat.entities.Course;
 import dat.entities.Person;
 import jakarta.persistence.EntityManagerFactory;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Main {
     public static void main(String[] args) {
         final EntityManagerFactory EMF = HibernateConfig.getEntityManagerFactory();
 
-        Person person1 = new Person("Bent","+4512345678","b@b.b",60, LocalDate.of(2020,1,1));
-        Person person2 = new Person("Bent","+4512345678","b@b.b",60, LocalDate.of(2020,1,1));
-        Person person3 = new Person("Bent3","+4512345678","b@b.b",60, LocalDate.of(2020,1,1));
+        Person person1 = new Person("Bent", "+4512345678", "b@b.b", 60, LocalDate.of(2020, 1, 1));
+        Person person2 = new Person("Bent", "+4512345678", "b@b.b", 60, LocalDate.of(2020, 1, 1));
+        Person person3 = new Person("Bent3", "+4512345678", "b@b.b", 60, LocalDate.of(2020, 1, 1));
+        Course course1 = new Course("Datamatiker", "John", 1, "3.4D", LocalTime.of(9, 0, 0));
+        PersonDao pDao = PersonDao.getInstance(EMF);
+        CourseDao cDao = CourseDao.getInstance(EMF);
 
-        PersonDao dao = PersonDao.getInstance(EMF);
-
-        dao.createPerson(person1);
-        dao.createPerson(person2);
-        dao.createPerson(person3);
-        System.out.println(person1.getId());
+        pDao.createPerson(person1);
+        cDao.createCourse(course1);
+        pDao.createPerson(person2);
+        pDao.createPerson(person3);
 
 
-        dao.updatePersonPhone(person2,"+46123");
+        pDao.updatePersonPhone(person2, "+46123");
+        cDao.updateCourse(course1, 2);
 
         EMF.close();
     }

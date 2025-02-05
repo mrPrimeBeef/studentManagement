@@ -7,6 +7,7 @@ import jakarta.persistence.Id;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalTime;
@@ -22,6 +23,7 @@ public class Course {
     private Long Id;
     private String name;
     private String teacher;
+    @Setter
     private int semester;
     private String classRoom;
     private LocalTime courseTime;
