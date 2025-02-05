@@ -1,9 +1,6 @@
 package dat.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalTime;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -27,6 +25,9 @@ public class Course {
     private int semester;
     private String classRoom;
     private LocalTime courseTime;
+
+    @ManyToMany(mappedBy = "courses")
+    List<Person> personList;
 
     public Course(String name, String teacher, int semester, String classRoom, LocalTime courseTime) {
         this.name = name;

@@ -29,13 +29,15 @@ public class Main {
         cDao.createCourse(course1);
         cDao.createCourse(course2);
 
-        pDao.updatePersonPhone(person2, "+46123");
+        person1.getCourses().add(course1);
+
+        pDao.updatePersonPhone(person1, "+46123");
         cDao.updateCourse(course1, 2);
 
-        pDao.deletePerson(person3);
-        cDao.deleteCourse(course1);
+//        pDao.deletePerson(person3);
+//        cDao.deleteCourse(course1);
 
-        pDao.getAllPersons().forEach(System.out::println);
+//        pDao.getAllPersons().forEach(System.out::println);
 
 
         EMF.close();

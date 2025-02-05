@@ -1,15 +1,13 @@
 package dat.entities;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
-@ToString
 @NoArgsConstructor
 @Entity
 public class Person {
@@ -21,6 +19,15 @@ public class Person {
     private String phone;
     private String email;
     private int age;
+
+    @ManyToMany
+    @JoinTable(
+            name = "link_person_course",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "course_id")
+    )
+    private List<Course> courses = new ArrayList<>();
+
     private LocalDate enrollmentDate;
 
     public Person(String name, String phone, String email, int age, LocalDate enrollmentDate) {
