@@ -3,6 +3,9 @@ package dat.DAO;
 import dat.entities.Person;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class PersonDao {
     private EntityManagerFactory emf;
@@ -42,6 +45,13 @@ public class PersonDao {
             em.remove(person);
             em.getTransaction().commit();
             return person;
+        }
+    }
+    public List<Person> getAllPersons(){
+        try(EntityManager em = emf.createEntityManager()){
+            TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
+            List<Person> listOfPersons = query.getResultList();
+            return listOfPersons;
         }
     }
 }

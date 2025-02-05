@@ -35,6 +35,8 @@ public class Main {
         pDao.deletePerson(person3);
         cDao.deleteCourse(course1);
 
+        pDao.getAllPersons().forEach(System.out::println);
+
 
         EMF.close();
     }
