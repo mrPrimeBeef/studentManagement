@@ -36,4 +36,12 @@ public class PersonDao {
             return updatedPerson;
         }
     }
+    public Person deletePerson(Person person){
+        try(EntityManager em = emf.createEntityManager()){
+            em.getTransaction().begin();
+            em.remove(person);
+            em.getTransaction().commit();
+            return person;
+        }
+    }
 }

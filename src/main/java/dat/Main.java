@@ -30,6 +30,9 @@ public class Main {
         pDao.updatePersonPhone(person2, "+46123");
         cDao.updateCourse(course1, 2);
 
+        pDao.deletePerson(person3);
+
+
         EMF.close();
     }
 }
