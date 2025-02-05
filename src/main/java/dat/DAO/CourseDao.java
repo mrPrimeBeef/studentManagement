@@ -56,4 +56,15 @@ public class CourseDao {
             return query.getResultList();
         }
     }
+
+    public List<Person> getAllPersonsOnCourse(int courseId){
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Person> query = em.createQuery(
+                    "SELECT p FROM Person p JOIN p.courses c WHERE c.id = :courseId",
+                    Person.class
+            );
+            query.setParameter("courseId", courseId);
+            return query.getResultList();
+        }
+    }
 }

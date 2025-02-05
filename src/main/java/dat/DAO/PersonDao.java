@@ -1,5 +1,6 @@
 package dat.DAO;
 
+import dat.entities.Course;
 import dat.entities.Person;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -52,6 +53,17 @@ public class PersonDao {
             TypedQuery<Person> query = em.createQuery("SELECT p FROM Person p", Person.class);
             List<Person> listOfPersons = query.getResultList();
             return listOfPersons;
+        }
+    }
+
+    public List<Course> getAllCoursesForPerson(int personId){
+        try(EntityManager em = emf.createEntityManager()){
+            TypedQuery<Course> query = em.createQuery(
+                    "SELECT c FROM Course c JOIN c.personList p WHERE p.id = :personId",
+                    Course.class
+            );
+            query.setParameter("personId", personId);
+            return query.getResultList();
         }
     }
 }

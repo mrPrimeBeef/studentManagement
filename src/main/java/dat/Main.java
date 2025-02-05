@@ -36,6 +36,7 @@ public class Main {
         person1.getCourses().add(course2);
         person1.getCourses().add(course3);
 
+
         pDao.updatePersonPhone(person1, "+46123");
         cDao.updateCourse(course1, 2);
 
@@ -46,7 +47,12 @@ public class Main {
 
 //        cDao.getAllCourses().forEach(System.out::println);
 
-        person1.getCourses().forEach(c-> System.out.println(c.getName()));
+//        person1.getCourses().forEach(c-> System.out.println(c.getName()));
+
+        pDao.getAllCoursesForPerson(1).forEach(System.out::println);
+
+//        cDao.getAllPersonsOnCourse(1).forEach(System.out::println);
+
 
         EMF.close();
     }

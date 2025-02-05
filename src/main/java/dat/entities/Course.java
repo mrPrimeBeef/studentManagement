@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
@@ -26,7 +27,7 @@ public class Course {
     private LocalTime courseTime;
 
     @ManyToMany(mappedBy = "courses")
-    List<Person> personList;
+    List<Person> personList = new ArrayList<>();
 
     public Course(String name, String teacher, int semester, String classRoom, LocalTime courseTime) {
         this.name = name;
