@@ -4,6 +4,9 @@ import dat.entities.Course;
 import dat.entities.Person;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
+
+import java.util.List;
 
 public class CourseDao {
     private EntityManagerFactory emf;
@@ -38,12 +41,19 @@ public class CourseDao {
         }
     }
 
-    public Course deleteCourse(Course course){
-        try(EntityManager em = emf.createEntityManager()){
+    public Course deleteCourse(Course course) {
+        try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(course);
             em.getTransaction().commit();
             return course;
+        }
+    }
+
+    public List<Course> getAllCourses() {
+        try (EntityManager em = emf.createEntityManager()) {
+            TypedQuery<Course> query = em.createQuery("SELECT c FROM Course c", Course.class);
+            return query.getResultList();
         }
     }
 }
