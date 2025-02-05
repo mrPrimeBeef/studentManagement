@@ -5,7 +5,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
 public class PersonDao {
-    private static EntityManagerFactory emf;
+    private EntityManagerFactory emf;
     private static PersonDao PERSON_DAO;
 
     private PersonDao(EntityManagerFactory emf){
