@@ -1,6 +1,7 @@
 package dat.DAO;
 
 import dat.entities.Course;
+import dat.entities.Person;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 
@@ -34,6 +35,15 @@ public class CourseDao {
             course.setSemester(newSemester);
             em.merge(course);
             em.getTransaction().commit();
+        }
+    }
+
+    public Course deleteCourse(Course course){
+        try(EntityManager em = emf.createEntityManager()){
+            em.getTransaction().begin();
+            em.remove(course);
+            em.getTransaction().commit();
+            return course;
         }
     }
 }

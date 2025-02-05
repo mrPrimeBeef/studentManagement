@@ -18,19 +18,22 @@ public class Main {
         Person person2 = new Person("Bent", "+4512345678", "b@b.b", 60, LocalDate.of(2020, 1, 1));
         Person person3 = new Person("Bent3", "+4512345678", "b@b.b", 60, LocalDate.of(2020, 1, 1));
         Course course1 = new Course("Datamatiker", "John", 1, "3.4D", LocalTime.of(9, 0, 0));
+        Course course2 = new Course("Sports Management", "Jørn", 5, "4.1", LocalTime.of(12, 30, 0));
+
         PersonDao pDao = PersonDao.getInstance(EMF);
         CourseDao cDao = CourseDao.getInstance(EMF);
 
         pDao.createPerson(person1);
-        cDao.createCourse(course1);
         pDao.createPerson(person2);
         pDao.createPerson(person3);
-
+        cDao.createCourse(course1);
+        cDao.createCourse(course2);
 
         pDao.updatePersonPhone(person2, "+46123");
         cDao.updateCourse(course1, 2);
 
         pDao.deletePerson(person3);
+        cDao.deleteCourse(course1);
 
 
         EMF.close();
