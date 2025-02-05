@@ -12,7 +12,6 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-@ToString
 @Entity
 public class Course {
 
