@@ -60,7 +60,7 @@ public class HibernateConfig {
             getAnnotationConfiguration(configuration);
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .datlySettings(configuration.getProperties())
+                    .applySettings(configuration.getProperties())
                     .build();
             SessionFactory sf = configuration.buildSessionFactory(serviceRegistry);
             EntityManagerFactory emf = sf.unwrap(EntityManagerFactory.class);
